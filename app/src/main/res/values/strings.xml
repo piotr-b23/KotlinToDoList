@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">KotlinToDoList</string>
+    <string name="title_activity_add_task">ScrollingActivity</string>
+    <string-array name="priority">
+        <item>wysoki</item>
+        <item>średni</item>
+        <item>niski</item>
+    </string-array>
+    <string name="action_settings">Settings</string>
+</resources>
