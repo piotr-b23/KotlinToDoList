@@ -6,10 +6,16 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "task")
 class ToDoEntity (
+    @ColumnInfo(name = "todo_title")
+    var taskTitle:String = "",
     @ColumnInfo(name = "todo_description")
     var taskDescription:String = "",
+    @ColumnInfo(name = "todo_date")
+    var taskDate:String = "",
+    @ColumnInfo(name = "todo_deadline")
+    var taskDeadline:String = "",
     @ColumnInfo(name = "todo_priority")
     var taskPriority:String = "",
-    @PrimaryKey(autoGenerate = true) var tableID: Int = 0){
-        var detail: String = ""
-    }
+    @ColumnInfo(name = "todo_priority_value")
+    var taskPriorityValue:Int = 0,
+    @PrimaryKey(autoGenerate = true) var tableID: Int = 0)

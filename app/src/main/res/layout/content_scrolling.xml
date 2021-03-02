@@ -14,13 +14,59 @@
         android:orientation="vertical">
 
 
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:ems="10"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:inputType="textShortMessage"
+            android:hint="Nazwa zadania" />
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
             <TableRow
-                android:layout_width="364dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="Opis"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/formatTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/taskDescription"
+                    android:layout_width="336dp"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp">
 
                 <TextView
@@ -46,7 +92,7 @@
                     android:id="@+id/pickDateButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Wybierz datę" />
+                    android:text="Data ukończenia" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -54,36 +100,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textSize="18sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center_vertical"
-                    android:text="Opis"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/formatTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/taskDescription"
-                    android:layout_width="336dp"
-                    android:layout_height="wrap_content"
-                    android:layout_span="2"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine" />
             </TableRow>
 
         </TableLayout>

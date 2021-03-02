@@ -28,6 +28,7 @@ class AddTask : AppCompatActivity() {
         val addTaskButton: Button = findViewById(R.id.addTaskButton)
         val dateTextView: TextView = findViewById(R.id.textView2)
         val description: EditText = findViewById(R.id.taskDescription)
+        val taskTitle: EditText = findViewById(R.id.editTextTitle)
 
         val spinner: Spinner = findViewById(R.id.TaskPrioritySpinner)
 
@@ -57,15 +58,14 @@ class AddTask : AppCompatActivity() {
         }
 
         addTaskButton.setOnClickListener {
-            val task = ToDoEntity(description.text.toString(),spinner.selectedItem.toString())
-            task.detail = "test"
+            val task = ToDoEntity(taskTitle.text.toString(),
+                    description.text.toString(),
+                    "data1",
+                    "data2",
+                    spinner.selectedItem.toString(),
+                    2)
             toDoDatabase!!.getDAO().addNewTask(task)
             finish()
         }
-
-
-
-
-
     }
 }
