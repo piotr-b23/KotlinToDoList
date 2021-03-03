@@ -18,4 +18,6 @@ class ToDoEntity (
     var taskPriority:String = "",
     @ColumnInfo(name = "todo_priority_value")
     var taskPriorityValue:Int = 0,
+    @ColumnInfo(name = "todo_status")
+    var taskIsDone:Boolean = false,
     @PrimaryKey(autoGenerate = true) var tableID: Int = 0)

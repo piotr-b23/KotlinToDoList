@@ -63,9 +63,19 @@ class AddTask : AppCompatActivity() {
                     "data1",
                     "data2",
                     spinner.selectedItem.toString(),
-                    2)
+                    convertPriority(spinner.selectedItem.toString()),
+                    false)
             toDoDatabase!!.getDAO().addNewTask(task)
             finish()
         }
+    }
+
+    fun convertPriority(priority: String): Int{
+        when (priority) {
+            "wysoki" -> return 3
+            "średni" -> return 2
+            "niski" -> return 1
+        }
+        return 0
     }
 }
