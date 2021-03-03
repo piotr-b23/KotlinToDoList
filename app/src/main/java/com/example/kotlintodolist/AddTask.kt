@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.widget.*
 import androidx.annotation.RequiresApi
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlintodolist.ToDoDatabase.Companion.toDoDatabase
+import java.time.LocalDate
 import java.util.*
 
 class AddTask : AppCompatActivity() {
@@ -20,9 +19,9 @@ class AddTask : AppCompatActivity() {
         setContentView(R.layout.activity_add_task)
 
         val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        var year = calendar.get(Calendar.YEAR)
+        var month = calendar.get(Calendar.MONTH)
+        var day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val pickDateButton: Button = findViewById(R.id.pickDateButton)
         val addTaskButton: Button = findViewById(R.id.addTaskButton)
@@ -52,6 +51,9 @@ class AddTask : AppCompatActivity() {
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{ view, selectedYear, selectedMonth, selectedDay->
                 val adjustedMonth = selectedMonth+1
                 dateTextView.setText("$selectedDay.$adjustedMonth.$selectedYear")
+                year = selectedYear
+                month = selectedMonth
+                day = selectedDay
             }, year, month, day)
             dpd.datePicker.minDate = System.currentTimeMillis() - 1000
             dpd.show()
@@ -60,14 +62,15 @@ class AddTask : AppCompatActivity() {
         addTaskButton.setOnClickListener {
             val task = ToDoEntity(taskTitle.text.toString(),
                     description.text.toString(),
-                    "data1",
-                    "data2",
+                    Date(System.currentTimeMillis()),
+                    Date(year-1900,month,day),
                     spinner.selectedItem.toString(),
                     convertPriority(spinner.selectedItem.toString()),
                     false)
             toDoDatabase!!.getDAO().addNewTask(task)
             finish()
         }
+
     }
 
     fun convertPriority(priority: String): Int{
