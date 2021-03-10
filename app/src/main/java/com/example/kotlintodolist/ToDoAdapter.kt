@@ -1,5 +1,6 @@
 package com.example.kotlintodolist
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,18 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
             if (itemCount != 0) {
                 view.findViewById<TextView>(R.id.taskTitle).text = toDoList.get(position).taskTitle
                 view.findViewById<TextView>(R.id.taskDescription).text = toDoList.get(position).taskDescription
+
+                when (toDoList.get(position).taskPriorityValue) {
+                    3 -> {
+                        view.findViewById<TextView>(R.id.rowColor).setBackgroundColor(Color.parseColor("#ffb3b3"))
+                    }
+                    2 -> {
+                        view.findViewById<TextView>(R.id.rowColor).setBackgroundColor(Color.parseColor("#ffffb3"))
+                    }
+                    else -> {
+                        view.findViewById<TextView>(R.id.rowColor).setBackgroundColor(Color.parseColor("#b3ffb3"))
+                    }
+                }
                 //view.findViewById<TextView>(R.id.taskDeadlineDate).text = toDoList.get(position).taskDeadline
             }
         }
