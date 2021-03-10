@@ -15,4 +15,9 @@
         tools:ignore="ContentDescription"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/toDoRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
