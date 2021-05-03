@@ -60,6 +60,9 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                         view.findViewById<TextView>(R.id.rowColor).setBackgroundColor(Color.parseColor("#b3ffb3"))
                     }
                 }
+                if(toDoList.get(position).taskIsDone==true){
+                    view.findViewById<TextView>(R.id.rowColor).setBackgroundColor(Color.parseColor("#d8d8d8"))
+                }
 
                 //view.findViewById<TextView>(R.id.taskDeadlineDate).text = toDoList.get(position).taskDeadline
             }

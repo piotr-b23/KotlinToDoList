@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnTodoItemClickedListener 
         val alertDialog = AlertDialog.Builder(this)
             .setItems(R.array.options, DialogInterface.OnClickListener { dialog, which ->
                 if (which==0){
+                    todo.taskIsDone = true;
+                    ToDoDatabase.toDoDatabase!!.getDAO().updateTask(todo)
+                    onResume()
 
                 }else{
                     toDoDatabase?.getDAO()?.deleteTask(todo)
