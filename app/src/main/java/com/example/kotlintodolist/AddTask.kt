@@ -8,7 +8,6 @@ import androidx.annotation.RequiresApi
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlintodolist.ToDoDatabase.Companion.toDoDatabase
-import java.time.LocalDate
 import java.util.*
 
 class AddTask : AppCompatActivity() {
@@ -30,6 +29,8 @@ class AddTask : AppCompatActivity() {
         val taskTitle: EditText = findViewById(R.id.editTextTitle)
 
         val spinner: Spinner = findViewById(R.id.TaskPrioritySpinner)
+
+        val id = intent.getIntExtra("id",0)
 
         setSupportActionBar(findViewById(R.id.toolbar))
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
@@ -59,6 +60,13 @@ class AddTask : AppCompatActivity() {
             dpd.show()
         }
 
+        if (id != 0){
+            description.setText(intent.getStringExtra("description"))
+            taskTitle.setText(intent.getStringExtra("title"))
+            spinner.setSelection(convertPriorityToDisplay(intent.getStringExtra("priority")))
+
+        }
+
         addTaskButton.setOnClickListener {
             val task = ToDoEntity(taskTitle.text.toString(),
                     description.text.toString(),
@@ -67,8 +75,16 @@ class AddTask : AppCompatActivity() {
                     spinner.selectedItem.toString(),
                     convertPriority(spinner.selectedItem.toString()),
                     false)
-            toDoDatabase!!.getDAO().addNewTask(task)
-            finish()
+
+            if(id!=0){
+                task.tableID = id;
+                toDoDatabase!!.getDAO().updateTask(task)
+                finish()
+            }
+            else{
+                toDoDatabase!!.getDAO().addNewTask(task)
+                finish()
+            }
         }
 
     }
@@ -78,6 +94,15 @@ class AddTask : AppCompatActivity() {
             "wysoki" -> return 3
             "średni" -> return 2
             "niski" -> return 1
+        }
+        return 0
+    }
+
+    fun convertPriorityToDisplay(priority: String?): Int{
+        when (priority) {
+            "wysoki" -> return 0
+            "średni" -> return 1
+            "niski" -> return 2
         }
         return 0
     }

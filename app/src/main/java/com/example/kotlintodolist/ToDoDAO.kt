@@ -4,7 +4,7 @@ import androidx.room.*
 
 @Dao
 interface ToDoDAO {
-    @Query("SELECT * FROM task ORDER BY tableID ASC")
+    @Query("SELECT * FROM task ORDER BY todo_deadline ASC, todo_priority_value DESC, todo_status DESC")
     fun getTaskList(): List<ToDoEntity>
 
     @Query("SELECT * FROM task WHERE tableID=:id")

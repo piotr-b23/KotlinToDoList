@@ -1,11 +1,13 @@
 package com.example.kotlintodolist
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,7 +49,12 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnTodoItemClickedListener 
     }
 
     override fun onTodoItemClicked(todo: ToDoEntity) {
-        TODO("Not yet implemented")
+        val intent = Intent(this, AddTask::class.java)
+        intent.putExtra("id",todo.tableID);
+        intent.putExtra("title",todo.taskTitle);
+        intent.putExtra("description",todo.taskDescription);
+        intent.putExtra("priority",todo.taskPriority);
+        startActivity(intent)
     }
 
 }
