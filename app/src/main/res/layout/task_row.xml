@@ -30,30 +30,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.1" />
 
-            <ImageView
-                android:id="@+id/imageViewDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.778"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.901"
-                app:srcCompat="@android:drawable/ic_delete" />
-
-            <ImageView
-                android:id="@+id/imageViewDone"
-                android:layout_width="34dp"
-                android:layout_height="31dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/rowColor"
-                app:layout_constraintHorizontal_bias="0.891"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.902"
-                app:srcCompat="@android:drawable/checkbox_on_background" />
-
             <TextView
                 android:id="@+id/taskTitle"
                 android:layout_width="362dp"

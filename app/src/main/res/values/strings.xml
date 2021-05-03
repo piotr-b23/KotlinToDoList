@@ -6,5 +6,9 @@
         <item>średni</item>
         <item>niski</item>
     </string-array>
+    <string-array name="options">
+        <item>zakończ</item>
+        <item>usuń</item>
+    </string-array>
     <string name="action_settings">Settings</string>
 </resources>

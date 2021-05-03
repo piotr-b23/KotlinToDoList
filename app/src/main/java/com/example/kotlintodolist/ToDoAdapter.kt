@@ -28,6 +28,10 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int){
         holder.view.setOnClickListener{onTodoItemClickedListener!!.onTodoItemClicked(toDoList!!.get(position))}
+        holder.view.setOnLongClickListener{
+            onTodoItemClickedListener!!.onTodoItemLongClicked(toDoList!!.get(position))
+            true
+        }
         holder.onBindViews(position)
     }
 
@@ -57,15 +61,6 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                     }
                 }
 
-                view.findViewById<ImageView>(R.id.imageViewDone).setOnClickListener{
-
-
-                }
-                view.findViewById<ImageView>(R.id.imageViewDelete).setOnClickListener{
-
-                }
-
-
                 //view.findViewById<TextView>(R.id.taskDeadlineDate).text = toDoList.get(position).taskDeadline
             }
         }
@@ -77,5 +72,6 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
 
         interface OnTodoItemClickedListener{
             fun onTodoItemClicked(todo: ToDoEntity)
+            fun onTodoItemLongClicked(todo: ToDoEntity)
         }
     }

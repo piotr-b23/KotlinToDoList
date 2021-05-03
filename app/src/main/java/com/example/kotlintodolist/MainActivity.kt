@@ -57,4 +57,19 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnTodoItemClickedListener 
         startActivity(intent)
     }
 
+    override fun onTodoItemLongClicked(todo: ToDoEntity) {
+        val alertDialog = AlertDialog.Builder(this)
+            .setItems(R.array.options, DialogInterface.OnClickListener { dialog, which ->
+                if (which==0){
+
+                }else{
+                    toDoDatabase?.getDAO()?.deleteTask(todo)
+                    onResume()
+                }
+                dialog.dismiss()
+            })
+            .create()
+        alertDialog.show()
+    }
+
 }
