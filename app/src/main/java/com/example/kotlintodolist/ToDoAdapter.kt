@@ -4,8 +4,13 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
 
@@ -32,6 +37,14 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                 view.findViewById<TextView>(R.id.taskTitle).text = toDoList.get(position).taskTitle
                 view.findViewById<TextView>(R.id.taskDescription).text = toDoList.get(position).taskDescription
 
+
+/*                val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+                formatter.timeZone = TimeZone.getTimeZone("UTC")
+                val result = formatter.parse(toDoList.get(position).taskDeadline.toString())*/
+
+
+                view.findViewById<TextView>(R.id.taskDeadlineDate).text = toDoList.get(position).taskDeadline.toString()
+
                 when (toDoList.get(position).taskPriorityValue) {
                     3 -> {
                         view.findViewById<TextView>(R.id.rowColor).setBackgroundColor(Color.parseColor("#ffb3b3"))
@@ -43,6 +56,16 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                         view.findViewById<TextView>(R.id.rowColor).setBackgroundColor(Color.parseColor("#b3ffb3"))
                     }
                 }
+
+                view.findViewById<ImageView>(R.id.imageViewDone).setOnClickListener{
+
+
+                }
+                view.findViewById<ImageView>(R.id.imageViewDelete).setOnClickListener{
+
+                }
+
+
                 //view.findViewById<TextView>(R.id.taskDeadlineDate).text = toDoList.get(position).taskDeadline
             }
         }
