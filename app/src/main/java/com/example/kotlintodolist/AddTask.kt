@@ -12,6 +12,11 @@ import java.util.*
 
 class AddTask : AppCompatActivity() {
 
+    private lateinit var description: EditText
+    private lateinit var taskTitle: EditText
+    private lateinit var spinner: Spinner
+    private lateinit var dateTextView: TextView
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +29,11 @@ class AddTask : AppCompatActivity() {
 
         val pickDateButton: Button = findViewById(R.id.pickDateButton)
         val addTaskButton: Button = findViewById(R.id.addTaskButton)
-        val dateTextView: TextView = findViewById(R.id.textView2)
-        val description: EditText = findViewById(R.id.taskDescription)
-        val taskTitle: EditText = findViewById(R.id.editTextTitle)
+        dateTextView = findViewById(R.id.textView2)
+        description= findViewById(R.id.taskDescription)
+        taskTitle = findViewById(R.id.editTextTitle)
 
-        val spinner: Spinner = findViewById(R.id.TaskPrioritySpinner)
+        spinner = findViewById(R.id.TaskPrioritySpinner)
 
         val id = intent.getIntExtra("id",0)
 
@@ -68,22 +73,24 @@ class AddTask : AppCompatActivity() {
         }
 
         addTaskButton.setOnClickListener {
-            val task = ToDoEntity(taskTitle.text.toString(),
-                    description.text.toString(),
-                    Date(System.currentTimeMillis()),
-                    Date(year-1900,month,day),
-                    spinner.selectedItem.toString(),
-                    convertPriority(spinner.selectedItem.toString()),
-                    false)
 
-            if(id!=0){
-                task.tableID = id;
-                toDoDatabase!!.getDAO().updateTask(task)
-                finish()
-            }
-            else{
-                toDoDatabase!!.getDAO().addNewTask(task)
-                finish()
+            if (checkIfDataOK()) {
+                val task = ToDoEntity(taskTitle.text.toString(),
+                        description.text.toString(),
+                        Date(System.currentTimeMillis()),
+                        Date(year - 1900, month, day),
+                        spinner.selectedItem.toString(),
+                        convertPriority(spinner.selectedItem.toString()),
+                        false)
+
+                if (id != 0) {
+                    task.tableID = id;
+                    toDoDatabase!!.getDAO().updateTask(task)
+                    finish()
+                } else {
+                    toDoDatabase!!.getDAO().addNewTask(task)
+                    finish()
+                }
             }
         }
 
@@ -106,4 +113,24 @@ class AddTask : AppCompatActivity() {
         }
         return 0
     }
+
+    fun checkIfDataOK(): Boolean{
+
+        if(taskTitle.text.isEmpty() || taskTitle.text.isBlank()){
+            Toast.makeText(applicationContext, "Wprowadź tytuł zadania", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else if (description.text.isEmpty() || description.text.isBlank()){
+            Toast.makeText(applicationContext, "Wprowadź opis zadania", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else if (dateTextView.text.isEmpty() || dateTextView.text.isBlank()){
+
+            Toast.makeText(applicationContext, "Wybierz datę zakończenia", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
+    }
+
 }
