@@ -10,5 +10,11 @@
         <item>zakończ</item>
         <item>usuń</item>
     </string-array>
+    <string-array name="sort">
+        <item>sortuj: data zakończenia najwcześniej</item>
+        <item>sortuj: data zakończenia najpóżniej</item>
+        <item>sortuj: priorytet malejąco</item>
+        <item>sortuj: priorytet rosnąco</item>
+    </string-array>
     <string name="action_settings">Settings</string>
 </resources>
