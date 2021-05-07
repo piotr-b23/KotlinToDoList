@@ -16,6 +16,9 @@ interface ToDoDAO {
     @Query("SELECT * FROM task ORDER BY todo_status ASC, todo_priority_value ASC")
     fun getTaskListPriorityLowest(): List<ToDoEntity>
 
+    @Query("SELECT * FROM task ORDER BY todo_status DESC, todo_priority_value DESC")
+    fun getTaskListStatus(): List<ToDoEntity>
+
     @Query("SELECT * FROM task WHERE tableID=:id")
     fun getTask(id: Int): ToDoEntity
 

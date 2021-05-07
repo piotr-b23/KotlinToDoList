@@ -81,6 +81,9 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnTodoItemClickedListener 
         else if(spinner.selectedItemPosition==3){
             toDoAdapter?.toDoList=toDoDatabase?.getDAO()?.getTaskListPriorityLowest()
         }
+        else if(spinner.selectedItemPosition==4){
+            toDoAdapter?.toDoList=toDoDatabase?.getDAO()?.getTaskListStatus()
+        }
 
         toDoRecyclerView.adapter = toDoAdapter
         toDoRecyclerView.layoutManager = LinearLayoutManager(this)

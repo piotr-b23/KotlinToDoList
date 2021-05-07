@@ -15,6 +15,7 @@
         <item>sortuj: data zakończenia najpóżniej</item>
         <item>sortuj: priorytet malejąco</item>
         <item>sortuj: priorytet rosnąco</item>
+        <item>sortuj: status</item>
     </string-array>
     <string name="action_settings">Settings</string>
 </resources>
