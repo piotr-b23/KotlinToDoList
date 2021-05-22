@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -42,12 +44,13 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                 view.findViewById<TextView>(R.id.taskDescription).text = toDoList.get(position).taskDescription
 
 
-/*                val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-                formatter.timeZone = TimeZone.getTimeZone("UTC")
-                val result = formatter.parse(toDoList.get(position).taskDeadline.toString())*/
+                var testday = toDoList.get(position).taskDeadline!!.time
+                var date = Date(testday)
+                var format = SimpleDateFormat("dd.MM.yyyy")
+                var test = format.format(date)
 
+                view.findViewById<TextView>(R.id.taskDeadlineDate).text = "Do zrobienia na: " + format.format(date)
 
-                view.findViewById<TextView>(R.id.taskDeadlineDate).text = toDoList.get(position).taskDeadline.toString()
 
                 when (toDoList.get(position).taskPriorityValue) {
                     3 -> {
@@ -64,7 +67,6 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                     view.findViewById<TextView>(R.id.rowColor).setBackgroundColor(Color.parseColor("#d8d8d8"))
                 }
 
-                //view.findViewById<TextView>(R.id.taskDeadlineDate).text = toDoList.get(position).taskDeadline
             }
         }
     }
