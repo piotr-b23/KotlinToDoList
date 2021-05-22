@@ -96,6 +96,7 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnTodoItemClickedListener 
         intent.putExtra("title",todo.taskTitle);
         intent.putExtra("description",todo.taskDescription);
         intent.putExtra("priority",todo.taskPriority);
+        intent.putExtra("deadline",todo.taskDeadline?.time);
         startActivity(intent)
     }
 

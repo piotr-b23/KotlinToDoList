@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlintodolist.ToDoDatabase.Companion.toDoDatabase
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AddTask : AppCompatActivity() {
@@ -26,12 +27,13 @@ class AddTask : AppCompatActivity() {
         var year = calendar.get(Calendar.YEAR)
         var month = calendar.get(Calendar.MONTH)
         var day = calendar.get(Calendar.DAY_OF_MONTH)
+        var ifDateChanged = false;
 
         val pickDateButton: Button = findViewById(R.id.pickDateButton)
         val addTaskButton: Button = findViewById(R.id.addTaskButton)
-        dateTextView = findViewById(R.id.textView2)
+        dateTextView = findViewById(R.id.dateDeadlineTextView)
         description= findViewById(R.id.taskDescription)
-        taskTitle = findViewById(R.id.editTextTitle)
+        taskTitle = findViewById(R.id.titleEditText)
 
         spinner = findViewById(R.id.TaskPrioritySpinner)
 
@@ -63,12 +65,18 @@ class AddTask : AppCompatActivity() {
             }, year, month, day)
             dpd.datePicker.minDate = System.currentTimeMillis() - 1000
             dpd.show()
+            ifDateChanged = true
         }
 
         if (id != 0){
             description.setText(intent.getStringExtra("description"))
             taskTitle.setText(intent.getStringExtra("title"))
             spinner.setSelection(convertPriorityToDisplay(intent.getStringExtra("priority")))
+            var dateToDisplay = Date(intent.getLongExtra("deadline",0)).time
+            var date = Date(dateToDisplay)
+            var format = SimpleDateFormat("dd.MM.yyyy")
+            dateTextView.setText(format.format(date))
+
 
         }
 
@@ -85,6 +93,10 @@ class AddTask : AppCompatActivity() {
 
                 if (id != 0) {
                     task.tableID = id;
+                    if (ifDateChanged==false)
+                    {
+                        task.taskDeadline = Date(intent.getLongExtra("deadline",0))
+                    }
                     toDoDatabase!!.getDAO().updateTask(task)
                     finish()
                 } else {

@@ -15,7 +15,7 @@
 
 
         <EditText
-            android:id="@+id/editTextTitle"
+            android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="66dp"
             android:ems="10"
@@ -95,7 +95,7 @@
                     android:text="Data ukończenia" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/dateDeadlineTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
