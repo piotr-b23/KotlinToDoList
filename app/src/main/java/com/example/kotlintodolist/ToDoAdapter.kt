@@ -17,6 +17,7 @@ import kotlin.collections.ArrayList
 class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
 
     private var onTodoItemClickedListener: OnTodoItemClickedListener?= null
+    private var taskDeadlineNear = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoAdapter.ToDoViewHolder {
         val layout = R.layout.task_row
@@ -48,6 +49,11 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                 var date = Date(dateToDisplay)
                 var format = SimpleDateFormat("dd.MM.yyyy")
 
+                val calendar = Calendar.getInstance()
+                if(dateToDisplay <= calendar.timeInMillis+90000000){
+                    taskDeadlineNear = true
+                }
+
                 view.findViewById<TextView>(R.id.taskDeadlineDate).text = "Do zrobienia na: " + format.format(date)
 
 
@@ -73,6 +79,14 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
         fun setTodoItemClickedListener(onTodoItemClickedListener: OnTodoItemClickedListener){
             this.onTodoItemClickedListener = onTodoItemClickedListener
         }
+
+    fun isDeadlineNear(): Boolean?{
+        return this.taskDeadlineNear
+    }
+
+    fun resetDeadlineNear(){
+        this.taskDeadlineNear = false
+    }
 
         interface OnTodoItemClickedListener{
             fun onTodoItemClicked(todo: ToDoEntity)
