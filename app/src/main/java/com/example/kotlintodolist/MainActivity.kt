@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnTodoItemClickedListener 
     private lateinit var spinner: Spinner
 
     lateinit var builder: NotificationCompat.Builder
-    private val channelId = "i.apps.notifications"
+    private val channelId = "1111"
     private val notificationTopic = "ToDo List"
     private val notificationText = "Kończy się czas na wykonanie niektórych zadań!!!"
 
