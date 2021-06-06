@@ -40,8 +40,13 @@ class AddTask : AppCompatActivity() {
         val id = intent.getIntExtra("id",0)
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
 
+        if (id != 0){
+            findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = "Edytuj zadanie"
+        }
+        else {
+            findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = "Dodaj zadanie"
+        }
         toDoDatabase = ToDoDatabase.getInstance(this)
 
 
