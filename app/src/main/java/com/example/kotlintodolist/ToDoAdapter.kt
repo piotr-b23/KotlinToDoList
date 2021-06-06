@@ -44,7 +44,6 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                 view.findViewById<TextView>(R.id.taskTitle).text = toDoList.get(position).taskTitle
                 view.findViewById<TextView>(R.id.taskDescription).text = toDoList.get(position).taskDescription
 
-
                 var dateToDisplay = toDoList.get(position).taskDeadline!!.time
                 var date = Date(dateToDisplay)
                 var format = SimpleDateFormat("dd.MM.yyyy")

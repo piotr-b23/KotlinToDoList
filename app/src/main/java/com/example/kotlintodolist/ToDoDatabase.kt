@@ -17,7 +17,6 @@ abstract class ToDoDatabase: RoomDatabase() {
         var toDoDatabase: ToDoDatabase? = null
 
         fun getInstance(context: Context): ToDoDatabase?{
-          // context.deleteDatabase(databaseName);
             if (toDoDatabase == null){
                 toDoDatabase = Room.databaseBuilder(context,
                 ToDoDatabase::class.java,
@@ -28,6 +27,4 @@ abstract class ToDoDatabase: RoomDatabase() {
             return toDoDatabase
         }
     }
-
-
 }

@@ -46,13 +46,7 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnTodoItemClickedListener 
         toDoRecyclerView = findViewById(R.id.toDoRecyclerView)
         spinner = findViewById(R.id.TaskSortSpinner)
 
-
         createNotificationChannel()
-
-        val intent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
 
         builder = NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.drawable.ic_launcher_background)
@@ -163,7 +157,6 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnTodoItemClickedListener 
             val channel = NotificationChannel(channelId, name, importance).apply {
                 description = descriptionText
             }
-            // Register the channel with the system
             val notificationManager: NotificationManager =
                     getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
