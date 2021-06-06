@@ -49,7 +49,7 @@ class ToDoAdapter(var toDoList: List<ToDoEntity>? = ArrayList<ToDoEntity>()): Re
                 var format = SimpleDateFormat("dd.MM.yyyy")
 
                 val calendar = Calendar.getInstance()
-                if(dateToDisplay <= calendar.timeInMillis+90000000){
+                if(dateToDisplay <= calendar.timeInMillis+90000000 && toDoList.get(position).taskIsDone == false){
                     taskDeadlineNear = true
                 }
 
